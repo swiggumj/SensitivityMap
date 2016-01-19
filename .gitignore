@@ -2,3 +2,6 @@
 *.cov
 *.pdf
 *.dat
+
+# no .pyc files (compiled python scripts)
+*.pyc
