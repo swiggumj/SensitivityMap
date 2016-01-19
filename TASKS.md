@@ -1,0 +1,13 @@
+# Logical next steps...
+- Incorporate pulse widths in FluxCalc
+- Incorporate degradation due to avg. offset in FluxCalc
+- Improve gridding technique (even 3D sky coverage, simple function with user-input resolution)
+- Continue updating existing surveys and add older surveys
+- Simulate populations to find Npsr(gl,gb) and DMmed(gl,gb)
+- Equatorial/galactic plotting option
+- Overplot PTA MSPs to explore under-populated sky positions
+- Write function that generates sensitivity curves for a given survey
+- Write function that mines psrcat for detectable sources (given survey)
+- Look into coding "spectral sensitivity" (Manchester 2001)
+- Explore sensitivity as f(P0) and f(DM) (make videos?)
+- Incorporate everything into PsrPopPy
