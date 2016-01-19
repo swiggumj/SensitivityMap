@@ -44,7 +44,11 @@ def Smin(surv_str,duty=0.06):
   print 'Smin mean, median (mJy): '+str(np.mean(Smin[cov_inds]))+', '+str(np.median(Smin[cov_inds]))
   print ''
 
-  return Smin, cov_inds
+  # Set positions without coverage == 999999.0
+  not_cov_inds = [cov == 0.0]
+  Smin[not_cov_inds] = 999999.0
+
+  return Smin
 
 
 if __name__ == "__main__":
@@ -60,34 +64,26 @@ if __name__ == "__main__":
   seff_factor_list = [(f/1400.0)**1.4 for f in surv_cfreq_list]		# convert S_xxx to S_1400  
 
   surv_sens_list  = []
-  surv_inds_list  = []
   for surv_str in surv_list:
-    smin, inds = Smin(surv_str) 
+    smin = Smin(surv_str) 
     surv_sens_list.append(smin)
-    surv_inds_list.append(inds)
 
   gl,gb = get_glgb()
-  smin_overall = []			# Append lowest smin.
-  survey_color = []			# Append most sensitive survey color.
-  num_overall  = []                     # Append number of surveys that overlap.
+  smin_overall = np.zeros(len(gl))+999999.0	# Set index to lowest smin.
+  survey_color = ['black']*len(gl)		# Set index to most sensitive survey color.
+  num_overall  = np.zeros(len(gl))		# Set index to number of surveys that overlap.
 
-  for ii in range(len(gl)):
-    seff_compare = []
-    cov_count = 0
-    for jj in range(len(surv_list)):
-      if surv_inds_list[jj][0][ii]:					# Need index '0' to retrieve boolean index values.
-        test_seff = surv_sens_list[jj][ii]*seff_factor_list[jj]		# Convert to S_1400
-        cov_count += 1
-      else:
-        test_seff = 999999.0
-
-      seff_compare.append(test_seff)
-      min_ind = np.argmin(np.array(seff_compare))
-
-    smin_overall.append(seff_compare[min_ind])
-    survey_color.append(colorlist[min_ind])
-    num_overall.append(cov_count)
-
+  # Determine most sensitive survey, redundancies, etc.
+  for ii in range(len(surv_list)):
+    print surv_list[ii],seff_factor_list[ii]
+    for jj in range(len(gl)):
+      if surv_sens_list[ii][jj] < 999999.0:	# First count coverage/sky position
+        num_overall[jj] += 1.0
+        fac = seff_factor_list[ii]		# Use to convert to "effective sensitivity" (1400 MHz)
+        if surv_sens_list[ii][jj]*fac < smin_overall[jj]:
+          smin_overall[jj] = surv_sens_list[ii][jj]*fac
+          survey_color[jj] = colorlist[ii]
+      
   file = open('all.dat','w')
   for ss,sc,sn in zip(smin_overall,survey_color,num_overall):
     file.write(str(ss)+'  '+str(sc)+'  '+str(sn)+'\n')

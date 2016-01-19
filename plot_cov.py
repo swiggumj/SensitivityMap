@@ -15,24 +15,25 @@ def get_glgb():
   gb_1d = np.reshape(gb,n_elem)
   return gl_1d, gb_1d
 
-deg2rad = np.pi/180.
+if __name__ == "__main__":
 
-#colorlist = ['green','pink','red','blue','cyan','purple','orange']
-survlist  = ['GBNCC','GBT350','AODRIFT','SMPS','PMPS','PALFA-Wi','PALFA-Mi']
-colorlist = get_colorlist(len(survlist))
+  deg2rad = np.pi/180.
 
-f = plt.figure()
-ax = f.add_subplot(111,aspect=1.0)
-gl,gb = get_glgb()
+  survlist  = ['GBNCC','GBT350','AODRIFT','SMPS','PMPS','PALFA-Wi','PALFA-Mi']
+  colorlist = get_colorlist(len(survlist))
 
-for s,c in zip(survlist,colorlist):
-  cov = np.loadtxt(s+'.cov')
-  inds = np.where(cov > 0.0)
-  plt.scatter(gl[inds],gb[inds],c=c,edgecolor='')
+  f = plt.figure()
+  ax = f.add_subplot(111,aspect=1.0)
+  gl,gb = get_glgb()
+
+  for s,c in zip(survlist,colorlist):
+    cov = np.loadtxt(s+'.cov')
+    inds = np.where(cov > 0.0)
+    plt.scatter(gl[inds],gb[inds],c=c,edgecolor='')
 
 
-plt.xlim([180,-180])
-plt.ylim([-90,90])
-plt.grid()
-#plt.show()
-plt.savefig('total_coverage.pdf',format='pdf')
+  plt.xlim([180,-180])
+  plt.ylim([-90,90])
+  plt.grid()
+  #plt.show()
+  plt.savefig('total_coverage.pdf',format='pdf')
