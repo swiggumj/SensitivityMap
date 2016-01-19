@@ -1,4 +1,4 @@
-# no .cov or .pdf files
+# no .cov, .dat or .pdf files
 *.cov
 *.pdf
-
+*.dat
