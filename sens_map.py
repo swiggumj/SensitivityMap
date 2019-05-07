@@ -58,10 +58,11 @@ if __name__ == "__main__":
 
   #"""
   # Added to compare survey sensitivities
+  desired_frequency = 900.0
   colorlist        = get_colorlist(len(surv_list))			# assign color to each survey
   surv_obj_list    = [Survey(s) for s in surv_list]			# list of survey objects
   surv_cfreq_list  = [s.freq for s in surv_obj_list]			# get c_freq from each survey
-  seff_factor_list = [(f/1400.0)**1.4 for f in surv_cfreq_list]		# convert S_xxx to S_1400  
+  seff_factor_list = [(f/desired_frequency)**1.4 for f in surv_cfreq_list]		# convert S_xxx to desired frequency  
 
   surv_sens_list  = []
   for surv_str in surv_list:
@@ -85,6 +86,7 @@ if __name__ == "__main__":
           survey_color[jj] = colorlist[ii]
       
   file = open('all.dat','w')
+  file.write('# '+str(desired_frequency)+'\n')    # Record effective frequency at which all sensitivities are quoted.
   for ss,sc,sn in zip(smin_overall,survey_color,num_overall):
     file.write(str(ss)+'  '+str(sc)+'  '+str(sn)+'\n')
   file.close() 

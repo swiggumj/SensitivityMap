@@ -7,12 +7,16 @@ from plot_cov import get_colorlist
 surv_list = ['AODRIFT','GBNCC','GBT350','HTRU-Nh','HTRU-Nl','HTRU-Nm','HTRU-Sh',
                'HTRU-Sl','HTRU-Sm','PALFA-Mi','PALFA-Wi','PMPS','SMPS']
 
+with open('all.dat') as f:
+    ref_freq = f.readline().split()[1]
+f.close()
+
 col  = np.loadtxt('all.dat', usecols=[1],dtype='str',unpack=True)
 smin,ncov = np.loadtxt('all.dat',dtype='float',usecols=[0,2],unpack=True)
 
 # What kind of plot??
 # 0: smin, 1: most sensitive survey, 2: redundancy
-plot_type = 2
+plot_type = 0
 
 gl,gb = get_glgb()
 deg2rad = np.pi/180.
@@ -30,8 +34,10 @@ if plot_type == 0:
   smin_hi = np.percentile(smin,90.0)
   plt.scatter(gl*deg2rad,gb*deg2rad,edgecolor='',s=1.5,c=smin,cmap=cm,vmin=smin_lo,vmax=smin_hi)
   cbar = plt.colorbar()
-  cbar.set_label(r"S$_{\rm 1400}$ (mJy)")
-  plt.title('Sensitivity Map (1400 MHz)')
+  cbar.set_label(r"S$_{\rm %s}$ (mJy)" % (ref_freq))
+
+  plt.scatter(-46.06*deg2rad,-1.93*deg2rad,s=25,c='white',marker='x',lw=1.2)
+  plt.title('Sensitivity Map (%s MHz)' % (ref_freq))
 
 if plot_type == 1:
 

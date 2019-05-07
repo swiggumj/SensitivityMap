@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 def get_colorlist(length):
   master_list = ['red','green','blue','purple','orange',
-		 'fuchsia','gold','navy','sage','plum',
+		 'fuchsia','gold','navy','lightgreen','plum',
 		 'olive','salmon','teal','pink','darkred']
   return master_list[0:length]
 

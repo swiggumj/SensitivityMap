@@ -104,6 +104,7 @@ def make_cov(surv_str,write_cov=1.0,plot_cov=1.0):
 if __name__ == "__main__":
   surv_list = ['AODRIFT','GBNCC','GBT350','HTRU-Nh','HTRU-Nl','HTRU-Nm',
                'HTRU-Sh','HTRU-Sl','HTRU-Sm','PALFA-Mi','PALFA-Wi','PMPS','SMPS']
+  #surv_list = ['AODRIFT','GBNCC','PMSURV']
   for s in surv_list:
     print s
     x = make_cov(s)
