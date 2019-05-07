@@ -1,7 +1,8 @@
 # Logical next steps...
+- Implement astropy functions to improve coordinate transformations/flexibility.
+- Implement healpy (skymap?) for more accurate gridding and better plotting capabilities.
 - Incorporate pulse widths in FluxCalc
 - Incorporate degradation due to avg. offset in FluxCalc
-- Improve gridding technique (even 3D sky coverage, simple function with user-input resolution)
 - Continue updating existing surveys and add older surveys
 - Simulate populations to find Npsr(gl,gb) and DMmed(gl,gb)
 - Equatorial/galactic plotting option
