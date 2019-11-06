@@ -1,14 +1,16 @@
 # Logical next steps...
-- Implement astropy functions to improve coordinate transformations/flexibility.
-- Implement healpy (skymap?) for more accurate gridding and better plotting capabilities.
-- Incorporate pulse widths in FluxCalc
-- Incorporate degradation due to avg. offset in FluxCalc
-- Continue updating existing surveys and add older surveys
-- Simulate populations to find Npsr(gl,gb) and DMmed(gl,gb)
-- Equatorial/galactic plotting option
-- Overplot PTA MSPs to explore under-populated sky positions
-- Write function that generates sensitivity curves for a given survey
-- Write function that mines psrcat for detectable sources (given survey)
-- Look into coding "spectral sensitivity" (Manchester 2001)
-- Explore sensitivity as f(P0) and f(DM) (make videos?)
-- Incorporate everything into PsrPopPy
+- [ ] Implement astropy functions to improve coordinate transformations/flexibility.
+- [x] Implement healpy (skymap?) for more accurate gridding and better plotting capabilities.
+- [ ] Incorporate pulse widths in FluxCalc
+- [ ] Incorporate degradation due to avg. offset in FluxCalc
+- [ ] Continue updating existing surveys and add older surveys
+- [ ] Simulate populations to find Npsr(gl,gb) and DMmed(gl,gb)
+- [ ] Equatorial/galactic plotting option (available w/ healpy?)
+- [ ] Overplot PTA MSPs to explore under-populated sky positions
+- [ ] Write function that generates sensitivity curves for a given survey
+- [ ] Write function that mines psrcat for detectable sources (given survey)
+- [ ] Look into coding "spectral sensitivity" (Manchester 2001)
+- [ ] Explore sensitivity as f(P0) and f(DM) (make videos?)
+- [ ] Incorporate everything into PsrPopPy
+- [ ] Update code (Python3); relies on similar PsrPopPy compatibility.
+- [ ] Run black (https://pypi.org/project/black/) to clean up code.
